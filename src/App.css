@@ -83,10 +83,8 @@
 
 .pokemon-card {
   display: flex;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 5px;
-  border-color: #FF452B;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
 }
 
 .pokemon-img-container {

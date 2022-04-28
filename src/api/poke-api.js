@@ -6,8 +6,8 @@ export const getPokemons = async (limit = 12, offset = 0) => {
     const rsp = await axios.get(url);
     const data = await rsp.data;
     return data;
-  } catch(err) {
-    return err;
+  } catch(error) {
+    return error;
   }
 }
 
