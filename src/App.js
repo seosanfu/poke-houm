@@ -14,7 +14,23 @@ function App() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    loadPokemons();
+    const handleLoadPokemons = async () => {
+      setLoading(true);
+      try {
+        const data = await getPokemons(12, 12 * page);
+        const promises = data.results.map(
+          async (d) => await getPokemonData(d.url)
+        );
+        setTotal(data.count);
+        const result = await Promise.all(promises);
+        setPokemons(result);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      };
+    }
+    handleLoadPokemons();
   }, [page]);
 
   const loadPokemons = async () => {
@@ -37,6 +53,7 @@ function App() {
   const onSearch = async (value) => {
     setLoading(true);
     setError(false);
+    console.log(value)
     if (value === '') {
       loadPokemons();
     } else {
